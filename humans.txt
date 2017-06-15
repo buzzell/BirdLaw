@@ -1,0 +1,16 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Justin Buzzell -- Front-end Developer -- github.com/buzzell
+
+# THANKS
+
+    Respond.js -- http://j.mp/respondjs
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    Apache Server Configs, jQuery, jQuery Mobile Normalize.css
+    Sublime Text, Photoshop

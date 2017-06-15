@@ -1,0 +1,40 @@
+# compress text, html, javascript, css, xml:
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+# <IfModule mod_headers.c>
+#    Header set Access-Control-Allow-Origin "*"
+# </IfModule>
+ErrorDocument 404 /index.php
+
+AddDefaultCharset utf-8
+
+<IfModule mod_mime.c>
+    AddCharset utf-8 .atom .css .js .json .jsonld .rss .vtt .webapp .xml
+    AddType image/ico .ico
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    Options +FollowSymlinks
+  # Options +SymLinksIfOwnerMatch
+    RewriteEngine On
+  # RewriteBase /
+</IfModule>
+
+
+<IfModule mod_rewrite.c>
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    RewriteRule ^http://%1%{REQUEST_URI} [R=301,L]
+    RewriteRule ^([a-z-]+)$ index.php?slug=$1 [L]
+    RewriteRule ^([a-z-]+).mp3$ sounds/mp3/$1.mp3 [L]
+    RewriteRule ^([a-z-]+).ogg$ sounds/ogg/$1.ogg [L]
+    RewriteRule ^([a-z-]+).jpg$ img/snaps/$1.jpg [L]
+    RewriteRule ^([a-z-]+).json$ php/json.php?slug=$1 [L]
+</IfModule>
